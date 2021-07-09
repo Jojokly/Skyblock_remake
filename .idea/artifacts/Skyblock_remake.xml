@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Skyblock_remake">
+    <output-path>$USER_HOME$/Desktop/Jonne/Schule/mathematik/Minecraft coding/Server_1_16_5/plugins</output-path>
+    <root id="archive" name="Skyblock_remake.jar">
+      <element id="module-output" name="Skyblock_remake" />
+    </root>
+  </artifact>
+</component>

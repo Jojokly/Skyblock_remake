@@ -1,0 +1,14 @@
+name: Skyblock_remake
+version: 1.0
+author: Jojokly
+main: me.Jojokly.skyblockmain.Main
+api-version: 1.16
+
+commands:
+   loop:
+   museum:
+   setcustomhealth:
+   setIntelligence:
+   items:
+   countdown:
+   spawncustommob:
