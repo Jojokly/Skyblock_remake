@@ -21,6 +21,7 @@ import org.bukkit.util.Vector;
 public class Swing {
 
     public static void Swing(Player p) {
+        p.sendMessage("Deine mudda");
         if (p.getItemInHand().getType().equals(Material.BONE)) {
             ItemStack thrownBonemerang = new ItemStack(Material.GHAST_TEAR);
             ItemMeta bonem = thrownBonemerang.getItemMeta();
