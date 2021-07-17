@@ -10,6 +10,7 @@ import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -21,24 +22,24 @@ import org.bukkit.util.Vector;
 public class Swing {
 
     public static void Swing(Player p) {
-        p.sendMessage("Deine mudda");
         if (p.getItemInHand().getType().equals(Material.BONE)) {
+            ItemStack bone = p.getItemInHand();
+            ItemMeta bonemeta = bone.getItemMeta();
             ItemStack thrownBonemerang = new ItemStack(Material.GHAST_TEAR);
             ItemMeta bonem = thrownBonemerang.getItemMeta();
             bonem.setDisplayName("§6Bonemerang");
             bonem.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
             bonem.addEnchant(Enchantment.DAMAGE_ALL, 1, true);
-            thrownBonemerang.setItemMeta(bonem);
+            thrownBonemerang.setItemMeta(bonemeta);
             net.minecraft.server.v1_16_R3.ItemStack nmsbone = CraftItemStack.asNMSCopy(thrownBonemerang);
             int random = (int)(Math.random() * 1000000 + 1);
             NBTTagCompound combound = (nmsbone.hasTag()) ? nmsbone.getTag() : new NBTTagCompound();
             combound.setInt("Random", random);
             nmsbone.setTag(combound);
             ItemStack finalItem = CraftItemStack.asBukkitCopy(nmsbone);
-
             Location loc = p.getLocation();
             World w = p.getWorld();
-            ArmorStand as = w.spawn(loc, ArmorStand.class);
+            ArmorStand as = (ArmorStand) w.spawnEntity(loc, EntityType.ARMOR_STAND);
             Location destination = loc.add(loc.getDirection().multiply(10));
 
             as.setArms(true);
@@ -50,7 +51,7 @@ public class Swing {
 
             p.getInventory().removeItem(p.getItemInHand());
             p.getInventory().addItem(finalItem);
-            Vector v = destination.subtract(loc).toVector();
+            Vector v = destination.subtract(p.getLocation()).toVector();
             new BukkitRunnable() {
                 int distance = 20;
                 int i = 0;
@@ -67,9 +68,9 @@ public class Swing {
                             p.getInventory().removeItem(finalItem);
                             p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG)));
                             cancel();
-                        }else {
-                            as.teleport(as.getLocation().add(v.normalize()));
                         }
+                    }else {
+                        as.teleport(as.getLocation().add(v.normalize()));
                     }
                     i++;
                     AbilityDamage.damage(p, as.getLocation(), 1000,1 ,1, "Swing");

@@ -38,4 +38,22 @@ public class ParticleUtils {
             length += space;
         }
     }
+
+    private static Vector rotateAroundAxisZ(Vector v, double angle) {
+        double x, y, cos, sin;
+        cos = Math.cos(angle);
+        sin = Math.sin(angle);
+        x = v.getX() * cos - v.getY() * sin;
+        y = v.getX() * sin + v.getY() * cos;
+        return v.setX(x).setY(y);
+    }
+
+    public static Vector getDirection(Double yaw, Double pitch, Double roll) {
+        Vector v = new Vector(0, -1, 0);
+        v = rotateAroundAxisX(v, pitch);
+        v = rotateAroundAxisY(v, yaw);
+        v = rotateAroundAxisZ(v, roll);
+        return v;
+    }
+
 }

@@ -128,43 +128,26 @@ public class Particletest implements Listener {
         }.runTaskTimer(Main.getMain(), 0, 1);
     }
 
-    public void playcircle(Player p) {
+    public static void playcircle(Player p) {
         Vector v = p.getLocation().getDirection();
         Location loc = p.getLocation();
         Location startloc = p.getLocation();
-        loc.setY(loc.getY() + 5);
-        startloc.setX(startloc.getX() +5);
-        startloc.setY(startloc.getY() + 5);
-        new BukkitRunnable() {
             int degrees = 0;
-            @Override
-            public void run() {
-                p.getWorld().spawnParticle(Particle.COMPOSTER, startloc, 0);
-                if (degrees == 360) {
-                    cancel();
-                    return;
-                }
-                if (loc == startloc) {
-                    p.getWorld().spawnParticle(Particle.FLAME, loc, 10, 1);
-                }
-                double radians = Math.toRadians(degrees);
-                double y = Math.sin(radians);
-                double x = Math.cos(radians);
-                y = y*5;
-                x = x*5;
-                loc.add(x, y, 0);
-                loc.getWorld().spawnParticle(Particle.FLAME, loc, 0);
-                loc.subtract(x, y, 0);
-                degrees ++;
+        for (int i = 0; i < 360; i++) {
+            p.getWorld().spawnParticle(Particle.PORTAL, startloc, 0);
+            if (degrees == 360) {
+                return;
             }
-        }.runTaskTimer(Main.getMain(), 0, 1);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                particlebeam(p, loc, v);
-            }
-        }.runTaskLater(Main.getMain(), 360);
-
+            double radians = Math.toRadians(degrees);
+            double y = Math.sin(radians);
+            double x = Math.cos(radians);
+            y = y*0.5;
+            x = x*0.5;
+            loc.add(x, y, 0);
+            loc.getWorld().spawnParticle(Particle.PORTAL, loc, 0);
+            loc.subtract(x, y, 0);
+            degrees++;
+        }
     }
     public void particleline(Player p){
         new BukkitRunnable() {
