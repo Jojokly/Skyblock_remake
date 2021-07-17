@@ -1,14 +1,11 @@
 package me.Jojokly.skyblockmain;
 
 import me.Jojokly.general.Listener;
+import me.Jojokly.items.abilities.*;
 import me.Jojokly.mobs.MobDamage;
 import me.Jojokly.general.countdown;
 import me.Jojokly.general.loop;
 import me.Jojokly.items.Listener.HoldItem;
-import me.Jojokly.items.abilities.Fire_blast;
-import me.Jojokly.items.abilities.GrapplingHook;
-import me.Jojokly.items.abilities.Particletest;
-import me.Jojokly.items.abilities.Right_click;
 import me.Jojokly.items.items.ClickItems;
 import me.Jojokly.items.items.getItems;
 import me.Jojokly.mobs.SpawnCommand;
@@ -18,6 +15,8 @@ import me.Jojokly.museum.MuseumCommand;
 import me.Jojokly.stats.health.Damage;
 import me.Jojokly.stats.intelligence.EndlessMana;
 import me.Jojokly.stats.main.StatsMain;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -45,7 +44,11 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MobDamage(), this);
         getServer().getPluginManager().registerEvents(new EndlessMana(), this);
         getServer().getPluginManager().registerEvents(new Damage(), this);
+        getServer().getPluginManager().registerEvents(new Power_Orb_Event(), this);
         instance = this;
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            StatsMain.Actionbar(p);
+        }
     }
 
     public static Main getMain() {

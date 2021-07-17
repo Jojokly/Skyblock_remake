@@ -26,6 +26,9 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(ItemBuilder.createItem(SkyblockItems.ROGUE_SWORD));
                         break;
+                    case "§fExinqueflux Power Orb":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.EXINQUEFLUX_POWER_ORB)));
                     case "§6Go to: §a§lUNCOMMON":
                         Bukkit.dispatchCommand(p, "items uncommon");
                     default:
@@ -40,6 +43,10 @@ public class ClickItems implements Listener {
                     case "§aGrappling Hook":
                         e.setCancelled(true);
                         p.getInventory().addItem(ItemBuilder.createItem(SkyblockItems.GRAPPLINGHOOK));
+                        break;
+                    case "§aRadiant Power Orb":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(ItemBuilder.createPowerOrb(Power_Orb.RADIANT_POWER_ORB));
                         break;
                     case "§6Go to: §f§lCOMMON":
                         Bukkit.dispatchCommand(p, "items common");
@@ -63,6 +70,14 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.GOLEM_SWORD)));
                         break;
+                    case "§9Bonzo's Staff" :
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.BONZO_STAFF)));
+                        break;
+                    case "§9Manaflux Power Orb":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.MANAFLUX_POWER_ORB)));
+                        break;
                     case "§6Go to: §a§lUNCOMMON":
                         Bukkit.dispatchCommand(p, "items uncommon");
                         break;
@@ -83,6 +98,10 @@ public class ClickItems implements Listener {
                     case "§5Ember Rod":
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.EMBER_ROD)));
+                        break;
+                    case "§5Overflux Power Orb":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
                         break;
                     case "§6Go to: §6§lLEGENDARY":
                         Bukkit.dispatchCommand(p,"items legendary");
@@ -115,9 +134,14 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG)));
                         break;
+                    case "§6Plasmaflux Power Orb":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.PLASMAFLUX_POWER_ORB)));
+                        break;
                     case "§4§lS§cw§6o§er§2d §bo§3f §1t§dh§1e §3U§bn§2i§ev§6e§cr§4s§ce":
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE)));
+                        p.getInventory().addItem(ItemBuilder.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJkZDExZGEwNDI1MmY3NmI2OTM0YmMyNjYxMmY1NGYyNjRmMzBlZWQ3NGRmODk5NDEyMDllMTkxYmViYzBhMiJ9fX0="));
                         break;
                     default:
                         e.setCancelled(true);

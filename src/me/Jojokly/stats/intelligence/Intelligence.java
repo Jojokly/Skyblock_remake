@@ -9,7 +9,6 @@ public class Intelligence {
 
     public static HashMap<String, Integer> intelligence = new HashMap<String, Integer>();
     public static Map<String, Integer> maxintelligence = new HashMap<String, Integer>();
-    public static HashMap<String, Integer> baseintelligence = new HashMap<String, Integer>();
 
     public static int getintelligence(Player p) {
         int integer;

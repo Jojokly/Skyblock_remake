@@ -1,8 +1,10 @@
 package me.Jojokly.stats.main;
 
 import me.Jojokly.skyblockmain.Main;
+import me.Jojokly.stats.defense.Defense;
 import me.Jojokly.stats.health.HealthMain;
 import me.Jojokly.stats.health.MaxHealth;
+import me.Jojokly.stats.health.Regen_Health;
 import me.Jojokly.stats.intelligence.Intelligence;
 import me.Jojokly.stats.intelligence.regenmana;
 import net.md_5.bungee.api.ChatMessageType;
@@ -17,15 +19,17 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.HashMap;
-import java.util.UUID;
-
 
 public class StatsMain implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        p.setFoodLevel(20);
+        Actionbar(p);
+    }
+
+    public static void Actionbar(Player p) {
         ItemStack item = p.getItemInHand();
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         NBTTagCompound combound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
@@ -34,13 +38,15 @@ public class StatsMain implements Listener {
         HealthMain.setCustomHealth(p, 100);
         Intelligence.setIntelligence(p, 100);
         Intelligence.setmaxIntelligence(p, 100 + intel);
+        Defense.setdefense(p, 100);
         regenmana.regenmana(p);
+        Regen_Health.regenHealth(p);
         p.setMaxHealth(20);
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (!p.getGameMode().equals(GameMode.CREATIVE)) {
-                    p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§c" + HealthMain.getCustomHealth(p) + "/" + MaxHealth.getMaxHealth(p) + " ❤" + "             " + "§b" + Intelligence.getintelligence(p) + "/" + Intelligence.getmaxintelligence(p) + " ⌘"));
+                    p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("§c" + HealthMain.getCustomHealth(p) + "/" + MaxHealth.getMaxHealth(p) + " ❤" + "       " +  "§a" + Defense.getdefense(p) + " ❈" + "       " + "§b" + Intelligence.getintelligence(p) + "/" + Intelligence.getmaxintelligence(p) + " ⌘"));
                 } else {
                     HealthMain.setCustomHealth(p, 100);
                     Intelligence.setIntelligence(p, 10000000);
@@ -50,4 +56,5 @@ public class StatsMain implements Listener {
             }
         }.runTaskTimer(Main.getMain(), 1, 1);
     }
+
 }

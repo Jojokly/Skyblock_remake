@@ -4,6 +4,7 @@ import me.Jojokly.items.items.SkyblockItems;
 import me.Jojokly.skyblockmain.Main;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
@@ -35,6 +36,8 @@ public class MobDamage implements Listener {
             World world = entity.getWorld();
             Location loc = entity.getLocation().clone().add(getRandomOffset(), 1.0D, getRandomOffset());
             ItemStack item = p.getItemInHand();
+            if (item.getType() == Material.AIR || !(item.hasItemMeta()))
+                return;
             net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
             NBTTagCompound compound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
             String s1 = compound.getString("SbName");
