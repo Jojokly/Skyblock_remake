@@ -26,9 +26,6 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(ItemBuilder.createItem(SkyblockItems.ROGUE_SWORD));
                         break;
-                    case "§fExinqueflux Power Orb":
-                        e.setCancelled(true);
-                        p.getInventory().addItem(new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.EXINQUEFLUX_POWER_ORB)));
                     case "§6Go to: §a§lUNCOMMON":
                         Bukkit.dispatchCommand(p, "items uncommon");
                     default:
@@ -142,6 +139,10 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE)));
                         p.getInventory().addItem(ItemBuilder.createHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTJkZDExZGEwNDI1MmY3NmI2OTM0YmMyNjYxMmY1NGYyNjRmMzBlZWQ3NGRmODk5NDEyMDllMTkxYmViYzBhMiJ9fX0="));
+                        break;
+                    case "§6Midas Staff":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.MIDAS_STAFF)));
                         break;
                     default:
                         e.setCancelled(true);

@@ -30,7 +30,7 @@ public class Right_click implements Listener {
                 int intelligence = me.Jojokly.stats.intelligence.Intelligence.getintelligence(p);
                 int manacost = items.getManacost();
                 if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                    if (manacost < intelligence) {
+                    if (manacost <= intelligence) {
                         Intelligence.setIntelligence(p, intelligence - manacost);
                         if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6Hyperion")) {
                             Wither_Impact.wither_impact(p);
@@ -53,6 +53,8 @@ public class Right_click implements Listener {
                             Swing.Swing(p);
                         } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§9Bonzo's Staff")) {
                             Showtime.showtime(p);
+                        } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6Midas Staff")) {
+                            Molten_Wave.Moltenwave(p);
                         }
                     } else {
                         p.sendMessage("§cYou don't have enogh Mana!");
