@@ -29,23 +29,6 @@ public class getItems implements CommandExecutor {
             Inventory rareinv = Bukkit.createInventory(null, 9 * 5, "§9Skyblock Items");
             Inventory epicinv = Bukkit.createInventory(null, 9 * 5, "§5Skyblock Items");
             Inventory legendaryinv = Bukkit.createInventory(null, 9 * 5, "§6Skyblock Items");
-            //Skyblock Items
-            ItemStack Hyperion = ItemBuilder.createItem(SkyblockItems.HYPERION);
-            ItemStack Giant_Sword = ItemBuilder.createItem(SkyblockItems.GIANT_SWORD);
-            ItemStack SpiritSceptre = new ItemStack(ItemBuilder.createItem(SkyblockItems.SPIRIT_SCEPTRE));
-            ItemStack Bonemerang = new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG));
-            ItemStack Plasmaflux = new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.PLASMAFLUX_POWER_ORB));
-            ItemStack ManaFlux = new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.MANAFLUX_POWER_ORB));
-            ItemStack aote = new ItemStack(ItemBuilder.createItem(SkyblockItems.ASPECT_OF_THE_END));
-            ItemStack golemsword = new ItemStack(ItemBuilder.createItem(SkyblockItems.GOLEM_SWORD));
-            ItemStack BonzoStaff = new ItemStack(ItemBuilder.createItem(SkyblockItems.BONZO_STAFF));
-            ItemStack Overflux = new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB));
-            ItemStack emberrod = new ItemStack(ItemBuilder.createItem(SkyblockItems.EMBER_ROD));
-            ItemStack aotj = ItemBuilder.createItem(SkyblockItems.ASPECT_OF_THE_JERRY);
-            ItemStack grapplinghook = new ItemStack(ItemBuilder.createItem(SkyblockItems.GRAPPLINGHOOK));
-            ItemStack radiant = new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.RADIANT_POWER_ORB));
-            ItemStack sotu = new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE));
-            ItemStack rs = new ItemStack(ItemBuilder.createItem(SkyblockItems.ROGUE_SWORD));
             //Other Items
             ItemStack toCommon = new ItemStack(ItemBuilder(Material.ARROW, "§6Go to: §f§lCOMMON"));
             ItemStack toUncommon = new ItemStack(ItemBuilder(Material.ARROW, "§6Go to: §a§lUNCOMMON"));
@@ -59,9 +42,8 @@ public class getItems implements CommandExecutor {
             }
                 ItemStack white_fill = new ItemStack(ItemBuilder(Material.WHITE_STAINED_GLASS_PANE, " "));
                 commoninv.setItem(0, white_fill);
-                commoninv.setItem(1, aotj);
-                commoninv.setItem(2, rs);
-                commoninv.setItem(3, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.EXINQUEFLUX_POWER_ORB)));
+                commoninv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.ASPECT_OF_THE_JERRY)));
+                commoninv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.ROGUE_SWORD)));
                 commoninv.setItem(8, white_fill);
                 commoninv.setItem(9, white_fill);
                 commoninv.setItem(17, white_fill);
@@ -79,8 +61,8 @@ public class getItems implements CommandExecutor {
                 }
                     ItemStack green_fill = new ItemStack(ItemBuilder(Material.GREEN_STAINED_GLASS_PANE, " "));
                     uncommoninv.setItem(0, green_fill);
-                    uncommoninv.setItem(1, grapplinghook);
-                    uncommoninv.setItem(2, radiant);
+                    uncommoninv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.GRAPPLINGHOOK)));
+                    uncommoninv.setItem(2, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.RADIANT_POWER_ORB)));
                     uncommoninv.setItem(8, green_fill);
                     uncommoninv.setItem(9, green_fill);
                     uncommoninv.setItem(17, green_fill);
@@ -98,10 +80,10 @@ public class getItems implements CommandExecutor {
             }
             ItemStack bluefill = new ItemStack(ItemBuilder(Material.BLUE_STAINED_GLASS_PANE, " "));
             rareinv.setItem(0, bluefill);
-            rareinv.setItem(1, aote);
-            rareinv.setItem(2, golemsword);
-            rareinv.setItem(3, BonzoStaff);
-            rareinv.setItem(4, ManaFlux);
+            rareinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.ASPECT_OF_THE_END)));
+            rareinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.GOLEM_SWORD)));
+            rareinv.setItem(3, new ItemStack(ItemBuilder.createItem(SkyblockItems.BONZO_STAFF)));
+            rareinv.setItem(4, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.MANAFLUX_POWER_ORB)));
             rareinv.setItem(8, bluefill);
             rareinv.setItem(9, bluefill);
             rareinv.setItem(17, bluefill);
@@ -118,8 +100,8 @@ public class getItems implements CommandExecutor {
             }
             ItemStack purplefill = new ItemStack(ItemBuilder(Material.PURPLE_STAINED_GLASS_PANE, " "));
             epicinv.setItem(0, purplefill);
-            epicinv.setItem(1, emberrod);
-            epicinv.setItem(2, Overflux);
+            epicinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.EMBER_ROD)));
+            epicinv.setItem(2, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
             epicinv.setItem(8, purplefill);
             epicinv.setItem(9, purplefill);
             epicinv.setItem(17, purplefill);
@@ -136,12 +118,13 @@ public class getItems implements CommandExecutor {
             }
             ItemStack goldfill = new ItemStack(ItemBuilder(Material.YELLOW_STAINED_GLASS_PANE, " "));
             legendaryinv.setItem(0, goldfill);
-            legendaryinv.setItem(1, Hyperion);
-            legendaryinv.setItem(2, Giant_Sword);
-            legendaryinv.setItem(3, SpiritSceptre);
-            legendaryinv.setItem(4, Bonemerang);
-            legendaryinv.setItem(5, Plasmaflux);
-            legendaryinv.setItem(6, sotu);
+            legendaryinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.HYPERION)));
+            legendaryinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.GIANT_SWORD)));
+            legendaryinv.setItem(3, new ItemStack(ItemBuilder.createItem(SkyblockItems.SPIRIT_SCEPTRE)));
+            legendaryinv.setItem(4, new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG)));
+            legendaryinv.setItem(5, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.PLASMAFLUX_POWER_ORB)));
+            legendaryinv.setItem(6, new ItemStack(ItemBuilder.createItem(SkyblockItems.MIDAS_STAFF)));
+            legendaryinv.setItem(7, new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE)));
             legendaryinv.setItem(8, goldfill);
             legendaryinv.setItem(9, goldfill);
             legendaryinv.setItem(17, goldfill);

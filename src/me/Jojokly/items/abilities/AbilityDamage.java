@@ -14,7 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class AbilityDamage {
 
-    public static void damage(Player p, Location loc, int basedamage, double scaling, int radius, String ability) {
+    public static void damage(Player p, Location loc, int basedamage, double scaling, double radius, String ability) {
         final int abilitydamage = (int) (basedamage * (1+(Intelligence.getmaxintelligence(p) / 100) * scaling));
         int i = 0;
         World w = p.getWorld();
