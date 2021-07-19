@@ -1,6 +1,5 @@
 package me.Jojokly.items.abilities;
 
-import me.Jojokly.items.items.Power_Orb;
 import me.Jojokly.items.items.SkyblockItems;
 import me.Jojokly.stats.intelligence.Intelligence;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
@@ -57,7 +56,7 @@ public class Right_click implements Listener {
                             Molten_Wave.Moltenwave(p);
                         }
                     } else {
-                        p.sendMessage("§cYou don't have enogh Mana!");
+                        p.sendMessage("§cYou don't have enough Mana!");
                     }
                 }
             } catch (IllegalArgumentException exception) {

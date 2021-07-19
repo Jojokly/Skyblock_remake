@@ -45,7 +45,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EndlessMana(), this);
         getServer().getPluginManager().registerEvents(new Damage(), this);
         getServer().getPluginManager().registerEvents(new Power_Orb_Event(), this);
-        getServer().getPluginManager().registerEvents(new Molten_Wave(), this);
+        //getServer().getPluginManager().registerEvents(new Molten_Wave(), this);
         instance = this;
         for (Player p : Bukkit.getOnlinePlayers()) {
             StatsMain.Actionbar(p);
