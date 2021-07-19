@@ -57,6 +57,10 @@ public class AbilityDamage {
             }
         }
         if (i==0) return;
-        p.sendMessage("§7Your §c" + ability + " §7Hit §c" + i + " §7Enemies for §c" + i* abilitydamage + " §7damage!");
+        if (i == 1) {
+            p.sendMessage("§7Your " + ability + " §7Hit §c" + i + " §7Enemy for §c" + i* abilitydamage + " §7damage!");
+        } else {
+            p.sendMessage("§7Your " + ability + " §7Hit §c" + i + " §7Enemies for §c" + i * abilitydamage + " §7damage!");
+        }
     }
 }
