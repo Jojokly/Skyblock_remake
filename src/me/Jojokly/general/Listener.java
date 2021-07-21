@@ -1,10 +1,12 @@
 package me.Jojokly.general;
 
 import org.bukkit.GameMode;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
@@ -41,4 +43,11 @@ public class Listener implements org.bukkit.event.Listener {
         e.setCancelled(true);
         return;
     }
+    @EventHandler
+    public void onEnderman(EntityChangeBlockEvent e) {
+        if (e.getEntity().getType() == EntityType.ENDERMAN) {
+            e.setCancelled(true);
+        }
+    }
+
 }

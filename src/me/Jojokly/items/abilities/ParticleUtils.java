@@ -1,5 +1,6 @@
 package me.Jojokly.items.abilities;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
@@ -34,7 +35,7 @@ public class ParticleUtils {
         Vector vector = p2.clone().subtract(p1).normalize().multiply(space);
         double length = 0;
         for (; length < distance; p1.add(vector)) {
-            world.spawnParticle(Particle.FLAME, p1.getX(), p1.getY(), p1.getZ(), 0);
+            world.spawnParticle(Particle.FLAME, p1.getX(), p1.getY(), p1.getZ(), 0, 0, 0, 0);
             length += space;
         }
     }

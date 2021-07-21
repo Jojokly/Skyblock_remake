@@ -13,13 +13,18 @@ import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Showtime {
 
+    static Map<String, Long> cooldown = new HashMap<String, Long>();
+
     public static void showtime(Player p) {
+        if (cooldown.containsKey(p.getName()) && (Long) cooldown.get(p.getName()) > System.currentTimeMillis()) {
+            long timeleft = ((Long) cooldown.get(p.getName()) - System.currentTimeMillis()) / 1000L;
+            return;
+        }
+        cooldown.put(p.getName(), System.currentTimeMillis() + 100L);
         p.spigot().sendMessage(TextComponent.fromLegacyText("§b-250 Mana (§6Showtime§b)"));
         List<Color> color = new ArrayList<Color>();
         color.add(Color.AQUA);

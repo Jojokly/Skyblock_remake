@@ -101,7 +101,8 @@ public class getItems implements CommandExecutor {
             ItemStack purplefill = new ItemStack(ItemBuilder(Material.PURPLE_STAINED_GLASS_PANE, " "));
             epicinv.setItem(0, purplefill);
             epicinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.EMBER_ROD)));
-            epicinv.setItem(2, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
+            epicinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.SINSEEKER_SCYTHE)));
+            epicinv.setItem(3, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
             epicinv.setItem(8, purplefill);
             epicinv.setItem(9, purplefill);
             epicinv.setItem(17, purplefill);
