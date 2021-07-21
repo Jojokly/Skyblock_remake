@@ -54,6 +54,8 @@ public class Right_click implements Listener {
                             Showtime.showtime(p);
                         } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6Midas Staff")) {
                             Molten_Wave.Moltenwave(p);
+                        } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§4Sin§5seeker Scythe")) {
+                            Sinrecall_Transmission.Sinrecall_Transmission(p);
                         }
                     } else {
                         p.sendMessage("§cYou don't have enough Mana!");

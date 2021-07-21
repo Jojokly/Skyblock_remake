@@ -100,6 +100,10 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
                         break;
+                    case "§4Sin§5seeker Scythe":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.SINSEEKER_SCYTHE)));
+                        break;
                     case "§6Go to: §6§lLEGENDARY":
                         Bukkit.dispatchCommand(p,"items legendary");
                         break;
