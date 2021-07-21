@@ -1,4 +1,5 @@
 # Project exclude paths
 /out/
-/.gitignore/
-/Skyblock_remake.iml/
+.gitignore
+Skyblock_remake.iml
+/.idea/
