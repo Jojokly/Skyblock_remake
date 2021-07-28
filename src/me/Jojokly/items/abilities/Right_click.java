@@ -62,7 +62,6 @@ public class Right_click implements Listener {
                     }
                 }
             } catch (IllegalArgumentException exception) {
-                exception.printStackTrace();
             }
         }
     }

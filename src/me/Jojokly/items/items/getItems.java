@@ -101,7 +101,7 @@ public class getItems implements CommandExecutor {
             ItemStack purplefill = new ItemStack(ItemBuilder(Material.PURPLE_STAINED_GLASS_PANE, " "));
             epicinv.setItem(0, purplefill);
             epicinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.EMBER_ROD)));
-            //epicinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.SINSEEKER_SCYTHE)));
+            epicinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.SINSEEKER_SCYTHE)));
             epicinv.setItem(3, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
             epicinv.setItem(8, purplefill);
             epicinv.setItem(9, purplefill);
@@ -125,7 +125,7 @@ public class getItems implements CommandExecutor {
             legendaryinv.setItem(4, new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG)));
             legendaryinv.setItem(5, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.PLASMAFLUX_POWER_ORB)));
             legendaryinv.setItem(6, new ItemStack(ItemBuilder.createItem(SkyblockItems.MIDAS_STAFF)));
-            legendaryinv.setItem(7, new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE)));
+            legendaryinv.setItem(8, new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE)));
             legendaryinv.setItem(8, goldfill);
             legendaryinv.setItem(9, goldfill);
             legendaryinv.setItem(17, goldfill);

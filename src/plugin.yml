@@ -12,3 +12,4 @@ commands:
    items:
    countdown:
    spawncustommob:
+   push:

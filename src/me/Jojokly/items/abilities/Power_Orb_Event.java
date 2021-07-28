@@ -22,7 +22,6 @@ public class Power_Orb_Event implements Listener {
 
     List<String> powerorb = new ArrayList<String>();
 
-    @SuppressWarnings("IllegealArgumentException")
     @EventHandler
     public void onClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
@@ -47,10 +46,11 @@ public class Power_Orb_Event implements Listener {
                     if (!powerorb.contains(p.getName())) {
                         Intelligence.setIntelligence(p, Intelligence.getintelligence(p) - cost);
                         Deploy.deploy(orb, p);
-                        p.spigot().sendMessage(TextComponent.fromLegacyText("§b-" + cost +" Mana (§6Deploy§b)"));
+                        p.spigot().sendMessage(TextComponent.fromLegacyText("§b-" + cost + " Mana (§6Deploy§b)"));
                         powerorb.add(p.getName());
                         new BukkitRunnable() {
-                            int time = 20* orb.getTime();
+                            int time = 20 * orb.getTime();
+
                             @Override
                             public void run() {
                                 if (time == 0) {
@@ -59,13 +59,12 @@ public class Power_Orb_Event implements Listener {
                                 }
                                 time--;
                             }
-                        }.runTaskTimer(Main.getMain(), 0 ,1);
+                        }.runTaskTimer(Main.getMain(), 0, 1);
                     } else {
                         p.sendMessage("§eYou already have a power orb placed!");
                     }
                 }
             } catch (IllegalArgumentException ex) {
-                ex.printStackTrace();
             }
         }
     }
