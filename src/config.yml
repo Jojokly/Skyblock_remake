@@ -1,0 +1,3 @@
+commands:
+  push:
+    default-push: 5
