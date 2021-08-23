@@ -1,5 +1,6 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
 import me.Jojokly.skyblockmain.Main;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
@@ -7,7 +8,9 @@ import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -46,11 +49,19 @@ public class Molten_Wave implements Listener {
                     w.spawnParticle(Particle.FLAME, loc.getX(), loc.getY() + 3, loc.getZ(), 2, 0, 0, 0);
                     FallingBlock block = w.spawnFallingBlock(loc, Material.GOLD_BLOCK, (byte) 0);
                     ((CraftEntity) block).getHandle().noclip = true;
+                    block.setCustomName("Molten_Wave");
+                    block.setCustomNameVisible(false);
                     loc.add(newvec);
-                    w.spawnParticle(Particle.FLAME, loc.getX(), loc.getY() + 3, loc.getZ(), 2, 0, 0, 0);                    FallingBlock block2 = w.spawnFallingBlock(loc, Material.GOLD_BLOCK, (byte) 0);
+                    w.spawnParticle(Particle.FLAME, loc.getX(), loc.getY() + 3, loc.getZ(), 2, 0, 0, 0);
+                    FallingBlock block2 = w.spawnFallingBlock(loc, Material.GOLD_BLOCK, (byte) 0);
+                    block2.setCustomName("Molten_Wave");
+                    block2.setCustomNameVisible(false);
                     ((CraftEntity) block2).getHandle().noclip = true;
                     loc.add(newvec.multiply(-2));
-                    w.spawnParticle(Particle.FLAME, loc.getX(), loc.getY() + 3, loc.getZ(), 1, 0, 0, 0);                   FallingBlock block3 = w.spawnFallingBlock(loc, Material.GOLD_BLOCK, (byte) 0);
+                    w.spawnParticle(Particle.FLAME, loc.getX(), loc.getY() + 3, loc.getZ(), 1, 0, 0, 0);
+                    FallingBlock block3 = w.spawnFallingBlock(loc, Material.GOLD_BLOCK, (byte) 0);
+                    block3.setCustomName("Molten_Wave");
+                    block3.setCustomNameVisible(false);
                     ((CraftEntity) block3).getHandle().noclip = true;
                     loc.add(newvec.multiply(-0.5));
                     AbilityDamage.damage(p, loc, 16000, 0.3, 1.5, "Molten Wave");
@@ -60,5 +71,17 @@ public class Molten_Wave implements Listener {
                 i-=1;
             }
         }.runTaskTimer(Main.getMain(), 0, 2);
+    }
+
+    @EventHandler
+    public void onBlock(EntityChangeBlockEvent e) {
+        Entity entity = e.getEntity();
+        if (entity instanceof FallingBlock) {
+            e.setCancelled(true);
+            if (entity.getCustomName().equalsIgnoreCase("Molten_Wave")) {
+                e.setCancelled(true);
+                entity.remove();
+            }
+        }
     }
 }

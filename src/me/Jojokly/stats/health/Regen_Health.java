@@ -22,7 +22,7 @@ public class Regen_Health {
                     HealthMain.setCustomHealth(p, healthregen + basehealth);
                 }
             }
-        }, 1, 40);
+        }, 1, 20);
     }
 
 }

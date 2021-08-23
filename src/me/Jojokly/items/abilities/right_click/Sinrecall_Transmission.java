@@ -1,6 +1,7 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
-import me.Jojokly.items.items.SkyblockItems;
+import me.Jojokly.items.abilities.utils.AbilityDamage;
+import me.Jojokly.items.items.Weapons;
 import me.Jojokly.skyblockmain.Main;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.*;
@@ -68,11 +69,11 @@ public class Sinrecall_Transmission {
                             world.spawnParticle(Particle.REDSTONE, p1.getX(), p1.getY(), p1.getZ(), 2, 0, 0, 0, dustOptions);
                             Location particleloc = new Location(p.getWorld(), p1.getX(), p1.getY(), p1.getZ());
                             ItemStack item = p.getItemInHand();
-                            net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+                           net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
                             NBTTagCompound compound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
                                 try {
                                     String s1 = compound.getString("SbName");
-                                    SkyblockItems items = SkyblockItems.valueOf(s1);
+                                    Weapons items = Weapons.valueOf(s1);
                                     AbilityDamage.damage(p, particleloc, items.getDamage(), 1, 0.5, "Sinrecall Transmission");
                             } catch (IllegalArgumentException e) {
                                     e.printStackTrace();

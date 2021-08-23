@@ -1,5 +1,6 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.init_Ability;
 
+import me.Jojokly.items.abilities.right_click.Deploy;
 import me.Jojokly.items.items.Power_Orb;
 import me.Jojokly.skyblockmain.Main;
 import me.Jojokly.stats.intelligence.Intelligence;
@@ -20,12 +21,12 @@ import java.util.List;
 
 public class Power_Orb_Event implements Listener {
 
-    List<String> powerorb = new ArrayList<String>();
+    static List<String> powerorb = new ArrayList<String>();
 
     @EventHandler
     public void onClick(PlayerInteractEvent e) {
         Player p = e.getPlayer();
-        ItemStack item = p.getItemInHand();
+        ItemStack item = p.getInventory().getItemInMainHand();
         if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (item.getType() == Material.AIR || !(item.hasItemMeta())) {
                 return;
@@ -46,7 +47,7 @@ public class Power_Orb_Event implements Listener {
                     if (!powerorb.contains(p.getName())) {
                         Intelligence.setIntelligence(p, Intelligence.getintelligence(p) - cost);
                         Deploy.deploy(orb, p);
-                        p.spigot().sendMessage(TextComponent.fromLegacyText("§b-" + cost + " Mana (§6Deploy§b)"));
+                        p.spigot().sendMessage(TextComponent.fromLegacyText("§b-1/2 of your Mana (§6Deploy§b)"));
                         powerorb.add(p.getName());
                         new BukkitRunnable() {
                             int time = 20 * orb.getTime();
@@ -61,11 +62,11 @@ public class Power_Orb_Event implements Listener {
                             }
                         }.runTaskTimer(Main.getMain(), 0, 1);
                     } else {
-                        p.sendMessage("§eYou already have a power orb placed!");
+                        p.sendMessage("§eYou already have an orb placed!");
                     }
                 }
-            } catch (IllegalArgumentException ex) {
+            }catch(IllegalArgumentException ignored) {
+                }
             }
         }
     }
-}

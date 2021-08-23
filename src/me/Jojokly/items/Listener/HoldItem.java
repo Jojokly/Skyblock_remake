@@ -1,17 +1,13 @@
 package me.Jojokly.items.Listener;
 
-import me.Jojokly.items.items.SkyblockItems;
-import me.Jojokly.stats.intelligence.Intelligence;
+import me.Jojokly.stats.intelligence.Intelligence;;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
-import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.List;
 
 public class HoldItem implements Listener {
 

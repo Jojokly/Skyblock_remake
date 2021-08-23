@@ -1,8 +1,6 @@
 package me.Jojokly.items.items;
 
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
-import net.minecraft.server.v1_16_R3.NBTTagString;
-import net.minecraft.server.v1_16_R3.NBTTagTypes;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -15,14 +13,12 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class ItemBuilder {
 
-    public static ItemStack createItem(SkyblockItems sbitem) {
+    public static ItemStack createItem(Weapons sbitem) {
         ArrayList<String> lore = new ArrayList<String>();
         Rarity rarity = sbitem.getRarity();
         int damage = sbitem.getDamage();
@@ -106,8 +102,46 @@ public class ItemBuilder {
         return Bukkit.getUnsafe().modifyItemStack(skull,
                 "{SkullOwner:{Id:\"" + hashAsId + "\",Properties:{textures:[{Value:\"" + value + "\"}]}}}"
         );
-
     }
 
-
+    public static ItemStack createBow(Bow bows) {
+        List<String> lore = new ArrayList<String>();
+        ChatColor color = bows.getRarity().getColor();
+        ItemStack item = new ItemStack(bows.getMaterial());
+        net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound combound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
+        combound.setString("Sbname", bows.getRawname());
+        combound.setInt("Damage", bows.getDamage());
+        combound.setBoolean("isShortBow", bows.isShortBow());
+        nmsItem.setTag(combound);
+        ItemStack finalItem = CraftItemStack.asBukkitCopy(nmsItem);
+        ItemMeta meta = finalItem.getItemMeta();
+        meta.setDisplayName(bows.getRarity().getColor() + bows.getName());
+        lore.add("§7Damage: §c+" + bows.getDamage());
+        if (bows.getStrength() != 0) {
+            lore.add("§7Strength: §c" + bows.getStrength());
+        }
+        if (bows.getCritdamage() != 0) {
+            lore.add("§7Crit damage: §c+" + bows.getCritdamage());
+        }
+        if (bows.getCritchance() != 0) {
+            lore.add("§7Crit Chance: §c+" + bows.getCritchance());
+        }
+        if (bows.isShortBow()) {
+            lore.add("");
+            lore.add(color + "Shortbow: Instantly Shoots!");
+            lore.add("§7Hits §c3 mobs on impact. Can damage");
+            lore.add("§7endermen. ");
+        }
+        lore.add(" ");
+        for (String lines : bows.getLore()) lore.add(lines);
+        lore.add(" ");
+        lore.add("§8This item can be reforged!");
+        lore.add(bows.getRarity().getColor() + "" + ChatColor.BOLD + bows.getRarity().getName().toUpperCase());
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        meta.setUnbreakable(true);
+        meta.setLore(lore);
+        finalItem.setItemMeta(meta);
+        return finalItem;
+    }
 }

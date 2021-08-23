@@ -1,20 +1,23 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.ParticleUtils;
 import me.Jojokly.items.items.ItemBuilder;
 import me.Jojokly.items.items.Power_Orb;
 import me.Jojokly.skyblockmain.Main;
-import me.Jojokly.stats.intelligence.Intelligence;
+import me.Jojokly.stats.health.HealthMain;
+import me.Jojokly.stats.health.MaxHealth;
 import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 public class Deploy {
 
     public static void deploy(Power_Orb orb, Player p) {
-        int manacost = Intelligence.getintelligence(p) / 2;
         ChatColor color = orb.getRarity().getColor();
         Location loc = p.getLocation();
         loc.setY(loc.getY() - 1);
@@ -41,7 +44,6 @@ public class Deploy {
                     cancel();
                     return;
                 }
-
                 Location asl = as.getLocation();
                 EulerAngle ea = as.getRightArmPose();
                 Vector armDir = ParticleUtils.getDirection(ea.getY(), ea.getX(), -ea.getZ());
@@ -73,5 +75,33 @@ public class Deploy {
                 i -=1;
             }
         }.runTaskTimer(Main.getMain(), 0, 1);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (Entity players : p.getWorld().getNearbyEntities(loc, 18, 18, 18)) {
+                    if (players instanceof Player) {
+                        int regenhealth = 0;
+                        if (orb == Power_Orb.RADIANT_POWER_ORB) {
+                            regenhealth = HealthMain.getCustomHealth(p) / 100;
+                        } else if (orb == Power_Orb.MANAFLUX_POWER_ORB) {
+                            regenhealth = HealthMain.getCustomHealth(p) / 50;
+                        } else if (orb == Power_Orb.OVERFLUX_POWER_ORB) {
+                            regenhealth = HealthMain.getCustomHealth(p) / 40;
+                        } else if (orb == Power_Orb.PLASMAFLUX_POWER_ORB) {
+                            regenhealth = HealthMain.getCustomHealth(p) / 33;
+                        }
+
+                        if (HealthMain.getCustomHealth(p) + regenhealth > MaxHealth.getMaxHealth(p)) {
+                            MaxHealth.setMaxhealth(p, MaxHealth.getMaxHealth(p));
+                        } else {
+                            HealthMain.setCustomHealth(p, HealthMain.getCustomHealth(p) + regenhealth);
+                        }
+
+                    }
+                }
+            }
+        }.runTaskTimer(Main.getMain(), 0, 20);
+
     }
 }

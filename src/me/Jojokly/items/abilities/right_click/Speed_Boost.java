@@ -1,4 +1,4 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
 import me.Jojokly.skyblockmain.Main;
 import me.Jojokly.stats.intelligence.Intelligence;

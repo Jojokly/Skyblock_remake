@@ -18,8 +18,9 @@ public class Command implements CommandExecutor {
             Player target = Bukkit.getPlayer(targetstring);
             int health = Integer.parseInt(args[1]);
             if (label.equalsIgnoreCase("setcustomhealth") && args.length == 2) {
-                HealthMain.setCustomHealth(target, health);
                 MaxHealth.setMaxhealth(target, health);
+                HealthMain.setCustomHealth(target, health);
+                HealthMain.setBaseHealth(target, health);
             }
         }
 

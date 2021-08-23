@@ -1,12 +1,11 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
 import me.Jojokly.skyblockmain.Main;
-import me.Jojokly.stats.intelligence.Intelligence;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
-import org.bukkit.entity.Mob;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

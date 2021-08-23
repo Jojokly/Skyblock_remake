@@ -1,12 +1,13 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
 import me.Jojokly.skyblockmain.Main;
-import me.Jojokly.stats.intelligence.Intelligence;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.World;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.*;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -14,8 +15,6 @@ import org.bukkit.util.Vector;
 import java.util.HashMap;
 
 public class Guided_Bat {
-
-    static HashMap<Player, Entity> shooter = new HashMap<Player, Entity>();
 
     public static void guidedBat(Player p) {
         p.spigot().sendMessage(TextComponent.fromLegacyText("§b-250 Mana (§6Guided Bat§b)"));
@@ -28,15 +27,19 @@ public class Guided_Bat {
         Bat bat = w.spawn(loc, Bat.class);
         bat.setAwake(true);
         bat.setCollidable(false);
+        ((CraftEntity) bat).getHandle().noclip = true;
         new BukkitRunnable() {
             @Override
             public void run() {
                 if (bat.isDead() || p.getLocation().distance(bat.getLocation()) > 80 || bat.getLocation().add(0.5, 0, 0).getBlock().getType() != Material.AIR || bat.getLocation().add(0, 0.5, 0).getBlock().getType() != Material.AIR || bat.getLocation().add(0, 0, 0.5).getBlock().getType() != Material.AIR || bat.getLocation().subtract(0.5, 0, 0).getBlock().getType() != Material.AIR || bat.getLocation().subtract(0, 0.5, 0).getBlock().getType() != Material.AIR || bat.getLocation().subtract(0, 0, 0.5).getBlock().getType() != Material.AIR) {
-                    cancel();
                     Location batloc = bat.getLocation();
                     w.spawnParticle(Particle.EXPLOSION_HUGE, batloc, 1, 0, 0, 0);
-                    AbilityDamage.damage(p, batloc, 2000, 0.2, 4, "Guided Bat");
                     bat.remove();
+                    try {
+                        AbilityDamage.damage(p, batloc, 2000, 0.2, 4, "Guided Bat");
+                    } catch(NullPointerException e){
+                    }
+                    cancel();
                     return;
                 }
                 Vector v = p.getLocation().getDirection().normalize();

@@ -1,20 +1,24 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
+import me.Jojokly.items.abilities.utils.Particletest;
 import me.Jojokly.skyblockmain.Main;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.minecraft.server.v1_16_R3.PacketPlayOutWorldParticles;
+import net.minecraft.server.v1_16_R3.ParticleParam;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_16_R3.CraftParticle;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 
-public class Instant_Transmission {
+public class Wither_Impact {
 
-    public static void teleport(Player p) {
-        p.sendMessage("§b-50 Mana (§6Instant Transmission§b)");
-        p.playSound(p.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+    public  static void wither_impact(Player p) {
+        Location loc = p.getLocation();
         HashSet hashSet = new HashSet();
         hashSet.add(Material.AIR);
         Block block = p.getTargetBlock(hashSet, 8);
@@ -32,13 +36,20 @@ public class Instant_Transmission {
             teleportLocation.setZ(teleportLocation.getZ() + 0.5D);
         }
         p.teleport(teleportLocation);
-        p.setWalkSpeed((float) (p.getWalkSpeed() + 0.05));
+        p.spigot().sendMessage(TextComponent.fromLegacyText("§b-250 Mana (§6Implosion§b)"));
+        p.getWorld().playSound(loc, Sound.ENTITY_GENERIC_EXPLODE, 1, 1);
+        ParticleParam particleParam = CraftParticle.toNMS(org.bukkit.Particle.valueOf("EXPLOSION_LARGE"));
+        PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(particleParam, true, (float) teleportLocation.getX(), (float) teleportLocation.getY(), (float) teleportLocation.getZ(), 0, 0, 0, 20, 20);
+        for (Player all : Bukkit.getOnlinePlayers())
+            ((CraftPlayer) all).getHandle().playerConnection.sendPacket(packet);
+        Particletest.playcircle(p);
+        AbilityDamage.damage(p, teleportLocation, 10000, 0.3, 5, "Implosion");
+        p.setAbsorptionAmount(10);
         new BukkitRunnable() {
             @Override
             public void run() {
-                p.setWalkSpeed((float) (p.getWalkSpeed() - 0.05));
+                p.setAbsorptionAmount(0);
             }
-
         }.runTaskLater(Main.getMain(), 100);
     }
 }

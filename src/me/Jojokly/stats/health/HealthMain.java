@@ -12,7 +12,9 @@ import org.bukkit.event.Listener;
 public class HealthMain implements Listener {
 
     public static HashMap<Player, Integer> healthmap = new HashMap();
+    public static HashMap<Player, Integer> basehealthmap = new HashMap();
 
+    //health
     public static int getCustomHealth(Player p) {
         int integer;
         if (healthmap.containsKey(p)) {
@@ -32,5 +34,26 @@ public class HealthMain implements Listener {
         }
 
     }
+    //base health
+    public static int getBaseHealth(Player p) {
+        int integer;
+        if (basehealthmap.containsKey(p)) {
+            integer = basehealthmap.get(p);
+        } else {
+            integer = 0;
+        }
+        return integer;
+    }
+
+    public static void setBaseHealth(Player p, int health) {
+        if (basehealthmap.containsKey(p)) {
+            basehealthmap.remove(p);
+            basehealthmap.put(p, health);
+        } else {
+            basehealthmap.put(p, health);
+        }
+
+    }
+
 }
 

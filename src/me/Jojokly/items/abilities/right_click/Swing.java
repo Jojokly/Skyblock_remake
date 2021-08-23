@@ -1,7 +1,8 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
 import me.Jojokly.items.items.ItemBuilder;
-import me.Jojokly.items.items.SkyblockItems;
+import me.Jojokly.items.items.Weapons;
 import me.Jojokly.skyblockmain.Main;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Location;
@@ -66,7 +67,7 @@ public class Swing {
                         if (i >= distance * 2) {
                             as.remove();
                             p.getInventory().removeItem(finalItem);
-                            p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG)));
+                            p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(Weapons.BONEMERANG)));
                             cancel();
                         }
                     }else {

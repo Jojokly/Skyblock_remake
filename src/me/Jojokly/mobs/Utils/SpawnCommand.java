@@ -1,5 +1,7 @@
-package me.Jojokly.mobs;
+package me.Jojokly.mobs.Utils;
 
+import me.Jojokly.mobs.Utils.BuildMob;
+import me.Jojokly.mobs.Utils.CustomMobs;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,9 +22,7 @@ public class SpawnCommand implements CommandExecutor {
                         BuildMob.createMob(cmob, p);
                     } catch (Exception e) {
                         p.sendMessage("§cNo Mob found!");
-                        e.printStackTrace();
                     }
-
                 }
             }
         }

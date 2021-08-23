@@ -1,15 +1,16 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.utils;
 
-import me.Jojokly.mobs.BuildMob;
+import me.Jojokly.mobs.damage.MobDamage;
 import me.Jojokly.skyblockmain.Main;
 import me.Jojokly.stats.intelligence.Intelligence;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.World;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Mob;
-import org.bukkit.entity.Player;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
+import org.bukkit.entity.*;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class AbilityDamage {
@@ -19,24 +20,25 @@ public class AbilityDamage {
         int i = 0;
         World w = p.getWorld();
         for (Entity entity : w.getNearbyEntities(loc, radius, radius, radius)) {
-            if (BuildMob.mobname.containsKey(entity) && BuildMob.moblvl.containsKey(entity) && BuildMob.mobhealth.containsKey(entity) && BuildMob.mobmaxhealth.containsKey(entity)) {
-                if (entity instanceof Mob) {
-                    if (BuildMob.mobname.containsKey(entity) && BuildMob.moblvl.containsKey(entity) && BuildMob.mobhealth.containsKey(entity) && BuildMob.mobmaxhealth.containsKey(entity)) {
-                        int lvl = BuildMob.moblvl.get(entity);
-                        String name = BuildMob.mobname.get(entity);
-                        int health = BuildMob.mobhealth.get(entity) - abilitydamage;
-                        if (health < abilitydamage) {
-                            ((Mob) entity).setHealth(0);
-                            entity.setCustomName("§7[Lvl " + lvl + "]§c " + name + " §a0/" + BuildMob.mobmaxhealth.get(entity) + "§c❤");
-                            BuildMob.mobhealth.remove(entity);
-                            BuildMob.moblvl.remove(entity);
-                            BuildMob.mobname.remove(entity);
-                            p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-                        }
-                        entity.setCustomName("§7[Lvl " + lvl + "]§c " + name + " §a" + health + "/" + BuildMob.mobmaxhealth.get(entity) + "§c❤");
+            if (entity instanceof Mob) {
+                PersistentDataContainer persistentData = entity.getPersistentDataContainer();
+                Integer lvl = persistentData.get(new NamespacedKey(Main.getMain(), "Level"), PersistentDataType.INTEGER);
+                String name = persistentData.get(new NamespacedKey(Main.getMain(), "Name"), PersistentDataType.STRING);
+                Integer health = persistentData.get(new NamespacedKey(Main.getMain(), "Health"), PersistentDataType.INTEGER) - abilitydamage;
+                Integer maxhealth = persistentData.get(new NamespacedKey(Main.getMain(), "MaxHealth"), PersistentDataType.INTEGER);
+                if (abilitydamage > health) {
+                    ((Mob) entity).setHealth(0);
+                    entity.setCustomName("§7[Lvl " + lvl + "]§c " + name + " §e0§f/§a" + maxhealth + "§c❤");
+                    p.playSound(p.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+                        } else if (!(health <= (maxhealth / 2))) {
+                        entity.setCustomName("§7[Lvl " + lvl + "]§c " + name + " §a" + health + "§f/§a" + maxhealth + "§c❤");
+                    } else {
+                        entity.setCustomName("§7[Lvl " + lvl + "]§c " + name + " §e" + health + "§f/§a" + maxhealth + "§c❤");
+                    }
+                        persistentData.set(new NamespacedKey(Main.getMain(), "Health"), PersistentDataType.INTEGER, health - abilitydamage);
                         entity.setCustomNameVisible(true);
                         ((Mob) entity).damage(0);
-                        BuildMob.mobhealth.put(entity, health);
+                        MobDamage.killer.put(entity, p);
                         i+= 1;
                         p.getWorld().spawn(entity.getLocation(), ArmorStand.class, (armorStand) -> {
                             armorStand.setMarker(true);
@@ -54,8 +56,6 @@ public class AbilityDamage {
                         });
                     }
                 }
-            }
-        }
         if (i==0) return;
         if (i == 1) {
             p.sendMessage("§7Your " + ability + " §7Hit §c" + i + " §7Enemy for §c" + i* abilitydamage + " §7damage!");

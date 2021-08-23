@@ -1,7 +1,7 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
 import me.Jojokly.skyblockmain.Main;
-import me.Jojokly.stats.intelligence.Intelligence;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;

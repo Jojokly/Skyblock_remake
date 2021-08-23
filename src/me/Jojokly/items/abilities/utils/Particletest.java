@@ -1,4 +1,4 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.utils;
 
 import me.Jojokly.skyblockmain.Main;
 import org.bukkit.*;
@@ -129,16 +129,11 @@ public class Particletest implements Listener {
     }
 
     public static void playcircle(Player p) {
-        Vector v = p.getLocation().getDirection();
         Location loc = p.getLocation();
         Location startloc = p.getLocation();
-            int degrees = 0;
         for (int i = 0; i < 360; i++) {
             p.getWorld().spawnParticle(Particle.PORTAL, startloc, 0);
-            if (degrees == 360) {
-                return;
-            }
-            double radians = Math.toRadians(degrees);
+            double radians = Math.toRadians(i);
             double y = Math.sin(radians);
             double x = Math.cos(radians);
             y = y*0.5;
@@ -146,7 +141,6 @@ public class Particletest implements Listener {
             loc.add(x, y, 0);
             loc.getWorld().spawnParticle(Particle.PORTAL, loc, 0);
             loc.subtract(x, y, 0);
-            degrees++;
         }
     }
     public void particleline(Player p){

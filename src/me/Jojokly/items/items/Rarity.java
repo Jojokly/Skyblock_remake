@@ -10,7 +10,8 @@ public enum Rarity {
     EPIC(ChatColor.DARK_PURPLE, "epic", 5000, 1.8),
     LEGENDARY(ChatColor.GOLD,"legendary" ,10000, 2),
     MYTHIC(ChatColor.LIGHT_PURPLE,"mythic" ,10000, 2.2),
-    SPECIAL(ChatColor.RED, "special", 10000, 2);
+    SPECIAL(ChatColor.RED, "special", 10000, 2),
+    CUSTOM(ChatColor.DARK_RED, "Custom", 0, 10),
     ;
 
     private ChatColor color;

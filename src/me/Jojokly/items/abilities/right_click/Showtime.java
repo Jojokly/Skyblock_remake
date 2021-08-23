@@ -1,5 +1,6 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
 import me.Jojokly.items.items.ItemBuilder;
 import me.Jojokly.skyblockmain.Main;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -62,8 +63,8 @@ public class Showtime {
         as.setCustomName("Bonzo_Balloon");
         as.setCustomNameVisible(false);
         as.setCollidable(false);
+       ((CraftEntity) as).getHandle().setInvisible(true);
         ((CraftEntity) as).getHandle().noclip = true;
-        ((CraftEntity) as).getHandle().setInvisible(true);
         p.playSound(loc, Sound.ENTITY_GHAST_WARN, 1, 10);
         switch (asheadresult) {
             case 1:

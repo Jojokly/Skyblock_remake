@@ -1,6 +1,6 @@
 package me.Jojokly.general;
 
-import me.Jojokly.items.items.SkyblockItems;
+import me.Jojokly.items.items.Weapons;
 import me.Jojokly.stats.intelligence.Intelligence;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
@@ -14,7 +14,7 @@ public class Formulas {
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         NBTTagCompound compound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
         String s1 = compound.getString("SbName");
-        SkyblockItems items = SkyblockItems.valueOf(s1);
+        Weapons items = Weapons.valueOf(s1);
         final int damage = (5 + items.getDamage()) * (1+ items.getStrength() / 100);
         return damage;
     }
@@ -24,7 +24,7 @@ public class Formulas {
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         NBTTagCompound compound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
         String s1 = compound.getString("SbName");
-        SkyblockItems items = SkyblockItems.valueOf(s1);
+        Weapons items = Weapons.valueOf(s1);
         final int abilitydamage = (int) (basedamage * (1+(Intelligence.getmaxintelligence(p) / 100) * scaling));
         return abilitydamage;
     }

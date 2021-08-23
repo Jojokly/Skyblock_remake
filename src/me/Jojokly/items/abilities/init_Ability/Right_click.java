@@ -1,6 +1,7 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.init_Ability;
 
-import me.Jojokly.items.items.SkyblockItems;
+import me.Jojokly.items.abilities.right_click.*;
+import me.Jojokly.items.items.Weapons;
 import me.Jojokly.stats.intelligence.Intelligence;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Material;
@@ -25,7 +26,7 @@ public class Right_click implements Listener {
             NBTTagCompound compound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
             try {
                 String s1 = compound.getString("SbName");
-                SkyblockItems items = SkyblockItems.valueOf(s1);
+                Weapons items = Weapons.valueOf(s1);
                 int intelligence = me.Jojokly.stats.intelligence.Intelligence.getintelligence(p);
                 int manacost = items.getManacost();
                 if (e.getAction().equals(Action.RIGHT_CLICK_AIR) || e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
@@ -56,12 +57,16 @@ public class Right_click implements Listener {
                             Molten_Wave.Moltenwave(p);
                         } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§4Sin§5seeker Scythe")) {
                             Sinrecall_Transmission.Sinrecall_Transmission(p);
+                        } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§5Staff of the Rising Sun")) {
+                            Ray_of_Hope.Ray_of_Hope(p);
+                        } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6Aspect of the Dragons")) {
+                            Dragon_Rage.Dragon_Rage(p);
                         }
                     } else {
                         p.sendMessage("§cYou don't have enough Mana!");
                     }
                 }
-            } catch (IllegalArgumentException exception) {
+            } catch (IllegalArgumentException ignored) {
             }
         }
     }

@@ -1,14 +1,19 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
+import me.Jojokly.items.abilities.utils.AbilityDamage;
+import me.Jojokly.items.abilities.utils.ParticleUtils;
+import me.Jojokly.skyblockmain.Main;
 import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftEntity;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Iron_punch {
+public class Iron_punch implements Listener {
 
     static Map<String, Long> cooldown = new HashMap<String, Long>();
 
@@ -36,29 +41,29 @@ public class Iron_punch {
 
 
         FallingBlock Block1 = p.getWorld().spawnFallingBlock(Block1loc, Material.IRON_BLOCK, (byte) 0);
+        Block1.setCustomName("Iron_Punch");
         FallingBlock Block2 = p.getWorld().spawnFallingBlock(Block2loc, Material.IRON_BLOCK, (byte) 0);
+        Block2.setCustomName("Iron_Punch");
         FallingBlock Block3 = p.getWorld().spawnFallingBlock(Block3loc, Material.IRON_BLOCK, (byte) 0);
+        Block3.setCustomName("Iron_Punch");
         FallingBlock Block4 = p.getWorld().spawnFallingBlock(Block4loc, Material.IRON_BLOCK, (byte) 0);
+        Block4.setCustomName("Iron_Punch");
         FallingBlock Block5 = p.getWorld().spawnFallingBlock(Block5loc, Material.IRON_BLOCK, (byte) 0);
+        Block5.setCustomName("Iron_Punch");
         FallingBlock Block6 = p.getWorld().spawnFallingBlock(Block6loc, Material.IRON_BLOCK, (byte) 0);
+        Block6.setCustomName("Iron_Punch");
         FallingBlock Block7 = p.getWorld().spawnFallingBlock(Block7loc, Material.IRON_BLOCK, (byte) 0);
+        Block7.setCustomName("Iron_Punch");
         FallingBlock Block8 = p.getWorld().spawnFallingBlock(Block8loc, Material.IRON_BLOCK, (byte) 0);
+        Block8.setCustomName("Iron_Punch");
         FallingBlock Block9 = p.getWorld().spawnFallingBlock(Block9loc, Material.IRON_BLOCK, (byte) 0);
+        Block9.setCustomName("Iron_Punch");
         FallingBlock Block10 = p.getWorld().spawnFallingBlock(Block10loc, Material.IRON_BLOCK, (byte) 0);
+        Block10.setCustomName("Iron_Punch");
         FallingBlock Block11 = p.getWorld().spawnFallingBlock(Block11loc, Material.IRON_BLOCK, (byte) 0);
+        Block11.setCustomName("Iron_Punch");
         FallingBlock Block12 = p.getWorld().spawnFallingBlock(Block12loc, Material.IRON_BLOCK, (byte) 0);
-        ((CraftEntity)Block1).getHandle().noclip = true;
-        ((CraftEntity)Block2).getHandle().noclip = true;
-        ((CraftEntity)Block3).getHandle().noclip = true;
-        ((CraftEntity)Block4).getHandle().noclip = true;
-        ((CraftEntity)Block5).getHandle().noclip = true;
-        ((CraftEntity)Block6).getHandle().noclip = true;
-        ((CraftEntity)Block7).getHandle().noclip = true;
-        ((CraftEntity)Block8).getHandle().noclip = true;
-        ((CraftEntity)Block9).getHandle().noclip = true;
-        ((CraftEntity)Block10).getHandle().noclip = true;
-        ((CraftEntity)Block11).getHandle().noclip = true;
-        ((CraftEntity)Block12).getHandle().noclip = true;
+        Block12.setCustomName("Iron_Punch");
 
         new BukkitRunnable() {
             @Override
@@ -101,6 +106,17 @@ public class Iron_punch {
                 p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_PLACE, 1, 1);
                 AbilityDamage.damage(p, p.getLocation(), 255, 1, 4, "Iron Punch");
             }
-        }.runTaskLater(me.Jojokly.skyblockmain.Main.getMain(), 25);
+        }.runTaskLater(Main.getMain(), 25);
+    }
+
+    @EventHandler
+    public void onBlock(EntityChangeBlockEvent e) {
+        Entity entity = e.getEntity();
+        if (entity instanceof FallingBlock) {
+            if (entity.getCustomName().equalsIgnoreCase("Iron_Punch")) {
+                e.setCancelled(true);
+                entity.remove();
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package me.Jojokly.items.abilities;
+package me.Jojokly.items.abilities.right_click;
 
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

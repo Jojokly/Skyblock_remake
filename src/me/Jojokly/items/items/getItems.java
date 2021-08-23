@@ -1,14 +1,21 @@
 package me.Jojokly.items.items;
 
+import me.Jojokly.items.armor.Armor;
+import me.Jojokly.items.armor.ArmorBuilder;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class getItems implements CommandExecutor {
 
@@ -29,6 +36,7 @@ public class getItems implements CommandExecutor {
             Inventory rareinv = Bukkit.createInventory(null, 9 * 5, "§9Skyblock Items");
             Inventory epicinv = Bukkit.createInventory(null, 9 * 5, "§5Skyblock Items");
             Inventory legendaryinv = Bukkit.createInventory(null, 9 * 5, "§6Skyblock Items");
+            Inventory custominv = Bukkit.createInventory(null, 9 * 5, "§4Custom Items");
             //Other Items
             ItemStack toCommon = new ItemStack(ItemBuilder(Material.ARROW, "§6Go to: §f§lCOMMON"));
             ItemStack toUncommon = new ItemStack(ItemBuilder(Material.ARROW, "§6Go to: §a§lUNCOMMON"));
@@ -42,8 +50,8 @@ public class getItems implements CommandExecutor {
             }
                 ItemStack white_fill = new ItemStack(ItemBuilder(Material.WHITE_STAINED_GLASS_PANE, " "));
                 commoninv.setItem(0, white_fill);
-                commoninv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.ASPECT_OF_THE_JERRY)));
-                commoninv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.ROGUE_SWORD)));
+                commoninv.setItem(1, new ItemStack(ItemBuilder.createItem(Weapons.ASPECT_OF_THE_JERRY)));
+                commoninv.setItem(2, new ItemStack(ItemBuilder.createItem(Weapons.ROGUE_SWORD)));
                 commoninv.setItem(8, white_fill);
                 commoninv.setItem(9, white_fill);
                 commoninv.setItem(17, white_fill);
@@ -61,8 +69,9 @@ public class getItems implements CommandExecutor {
                 }
                     ItemStack green_fill = new ItemStack(ItemBuilder(Material.GREEN_STAINED_GLASS_PANE, " "));
                     uncommoninv.setItem(0, green_fill);
-                    uncommoninv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.GRAPPLINGHOOK)));
+                    uncommoninv.setItem(1, new ItemStack(ItemBuilder.createItem(Weapons.GRAPPLINGHOOK)));
                     uncommoninv.setItem(2, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.RADIANT_POWER_ORB)));
+                    uncommoninv.setItem(3, new ItemStack(ArmorBuilder.build(Armor.LAPIS_ARMOR_HELMET)));
                     uncommoninv.setItem(8, green_fill);
                     uncommoninv.setItem(9, green_fill);
                     uncommoninv.setItem(17, green_fill);
@@ -80,10 +89,11 @@ public class getItems implements CommandExecutor {
             }
             ItemStack bluefill = new ItemStack(ItemBuilder(Material.BLUE_STAINED_GLASS_PANE, " "));
             rareinv.setItem(0, bluefill);
-            rareinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.ASPECT_OF_THE_END)));
-            rareinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.GOLEM_SWORD)));
-            rareinv.setItem(3, new ItemStack(ItemBuilder.createItem(SkyblockItems.BONZO_STAFF)));
+            rareinv.setItem(1, new ItemStack(ItemBuilder.createItem(Weapons.ASPECT_OF_THE_END)));
+            rareinv.setItem(2, new ItemStack(ItemBuilder.createItem(Weapons.GOLEM_SWORD)));
+            rareinv.setItem(3, new ItemStack(ItemBuilder.createItem(Weapons.BONZO_STAFF)));
             rareinv.setItem(4, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.MANAFLUX_POWER_ORB)));
+            rareinv.setItem(5, new ItemStack(ItemBuilder.createBow(Bow.MACHINE_GUN_BOW)));
             rareinv.setItem(8, bluefill);
             rareinv.setItem(9, bluefill);
             rareinv.setItem(17, bluefill);
@@ -100,9 +110,10 @@ public class getItems implements CommandExecutor {
             }
             ItemStack purplefill = new ItemStack(ItemBuilder(Material.PURPLE_STAINED_GLASS_PANE, " "));
             epicinv.setItem(0, purplefill);
-            epicinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.EMBER_ROD)));
-            epicinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.SINSEEKER_SCYTHE)));
+            epicinv.setItem(1, new ItemStack(ItemBuilder.createItem(Weapons.EMBER_ROD)));
+            epicinv.setItem(2, new ItemStack(ItemBuilder.createItem(Weapons.SINSEEKER_SCYTHE)));
             epicinv.setItem(3, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
+            epicinv.setItem(4, new ItemStack(ItemBuilder.createItem(Weapons.STAFF_OF_THE_RISING_SUN)));
             epicinv.setItem(8, purplefill);
             epicinv.setItem(9, purplefill);
             epicinv.setItem(17, purplefill);
@@ -117,23 +128,35 @@ public class getItems implements CommandExecutor {
                     legendaryinv.setItem(i, ItemBuilder(Material.GRAY_STAINED_GLASS_PANE, " "));
                 }
             }
+            ItemStack secret = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
+            net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(secret);
+            NBTTagCompound combound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
+            combound.setBoolean("Secret", true);
+            nmsItem.setTag(combound);
+            ItemStack finalSecret = CraftItemStack.asBukkitCopy(nmsItem);
+            ItemMeta meta = finalSecret.getItemMeta();
+            meta.setDisplayName(" ");
+            finalSecret.setItemMeta(meta);
             ItemStack goldfill = new ItemStack(ItemBuilder(Material.YELLOW_STAINED_GLASS_PANE, " "));
             legendaryinv.setItem(0, goldfill);
-            legendaryinv.setItem(1, new ItemStack(ItemBuilder.createItem(SkyblockItems.HYPERION)));
-            legendaryinv.setItem(2, new ItemStack(ItemBuilder.createItem(SkyblockItems.GIANT_SWORD)));
-            legendaryinv.setItem(3, new ItemStack(ItemBuilder.createItem(SkyblockItems.SPIRIT_SCEPTRE)));
-            legendaryinv.setItem(4, new ItemStack(ItemBuilder.createItem(SkyblockItems.BONEMERANG)));
+            legendaryinv.setItem(1, new ItemStack(ItemBuilder.createItem(Weapons.HYPERION)));
+            legendaryinv.setItem(2, new ItemStack(ItemBuilder.createItem(Weapons.GIANT_SWORD)));
+            legendaryinv.setItem(3, new ItemStack(ItemBuilder.createItem(Weapons.SPIRIT_SCEPTRE)));
+            legendaryinv.setItem(4, new ItemStack(ItemBuilder.createItem(Weapons.BONEMERANG)));
             legendaryinv.setItem(5, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.PLASMAFLUX_POWER_ORB)));
-            legendaryinv.setItem(6, new ItemStack(ItemBuilder.createItem(SkyblockItems.MIDAS_STAFF)));
-            legendaryinv.setItem(8, new ItemStack(ItemBuilder.createItem(SkyblockItems.SWORD_OF_THE_UNIVERSE)));
+            legendaryinv.setItem(6, new ItemStack(ItemBuilder.createItem(Weapons.MIDAS_STAFF)));
+            legendaryinv.setItem(7, new ItemStack(ItemBuilder.createBow(Bow.RUNAANS_BOW)));
             legendaryinv.setItem(8, goldfill);
             legendaryinv.setItem(9, goldfill);
+            legendaryinv.setItem(10, new ItemStack(ItemBuilder.createItem(Weapons.ASPECT_OF_THE_DRAGONS)));
+            legendaryinv.setItem(11, new ItemStack(ItemBuilder.createItem(Weapons.SWORD_OF_THE_UNIVERSE)));
             legendaryinv.setItem(17, goldfill);
             legendaryinv.setItem(18, toEpic);
             legendaryinv.setItem(26, goldfill);
             legendaryinv.setItem(27, goldfill);
             legendaryinv.setItem(35, goldfill);
             legendaryinv.setItem(36, goldfill);
+            legendaryinv.setItem(38, finalSecret);
             legendaryinv.setItem(44, goldfill);
                     if (label.equalsIgnoreCase("items")) {
                         if (args.length == 1) {
@@ -153,7 +176,36 @@ public class getItems implements CommandExecutor {
                                 case "legendary":
                                     p.openInventory(legendaryinv);
                                     break;
+                                case "custom":
+                                    p.openInventory(custominv);
+                                    break;
                             }
+                        } else if (args.length == 0) {
+                            Inventory items = Bukkit.createInventory(null, 9, "§bChoose your Rarity!");
+                            ItemStack common = new ItemStack(Material.WHITE_STAINED_GLASS_PANE);
+                            ItemStack uncommon = new ItemStack(Material.GREEN_STAINED_GLASS_PANE);
+                            ItemStack rare = new ItemStack(Material.BLUE_STAINED_GLASS_PANE);
+                            ItemStack epic = new ItemStack(Material.PURPLE_STAINED_GLASS_PANE);
+                            ItemStack legendary = new ItemStack(Material.YELLOW_STAINED_GLASS_PANE);
+                            List<ItemStack> raritylist = new ArrayList<>();
+                            raritylist.add(common);
+                            raritylist.add(uncommon);
+                            raritylist.add(rare);
+                            raritylist.add(epic);
+                            raritylist.add(legendary);
+                            for (int i = 0; i < raritylist.size(); i++) {
+                                ItemStack item = raritylist.get(i);
+                                ItemMeta ItemMeta = item.getItemMeta();
+                                ItemMeta.setDisplayName("§bChoose your Rarity!");
+                                item.setItemMeta(ItemMeta);
+                                items.setItem(i+2, item);
+                            }
+                            for (int i = 0; i < items.getSize(); i++) {
+                                if (items.getItem(i) == null) {
+                                    items.setItem(i, ItemBuilder(Material.GRAY_STAINED_GLASS_PANE, " "));
+                                }
+                            }
+                            p.openInventory(items);
                         }
                     }
                 }

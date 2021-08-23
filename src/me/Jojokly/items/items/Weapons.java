@@ -2,16 +2,18 @@ package me.Jojokly.items.items;
 
 import org.bukkit.Material;
 
-public enum SkyblockItems {
+public enum Weapons {
 
     HYPERION("§6Hyperion", "HYPERION", Rarity.LEGENDARY, Material.IRON_SWORD, 260, 350, 150,  "Wither Impact", 250, 0, "§7Ferocity: §a+30", "§7Deals +§a50% §7damage to", "§7Withers. Grants + §c 1 Damage", "§7and §a+2 §bIntelligence", "§7per §cCatacombs §7level.", " ", "§7Your Catacombs level: §c0", " ", "§6Item Ability: Wither Impact §eRIGHT CLICK ", "§7Teleports §a10 blocks §7ahead of you.", "§7Then implode dealing §c10000 §7damage to nearby enemies.", "§7Also applies the wither shield scroll ability", "§7reducing damage taken and granting", "§7an §6Absorption §7shield for 5 seconds.", "§8Mana cost: §3250", ""),
     GIANT_SWORD("§6Giant's Sword", "GIANT_SWORD",Rarity.LEGENDARY, Material.IRON_SWORD, 500, 0, 0, "Giant's Slam", 100, 15,"§6Item Ability: Giant's Slam  §eRIGHT CLICK", "§7Slam your sword into the ground", "§7dealing §c100,000 §7damage to", "§7nearby enemies", "§8Mana cost: §3500", "§8Cooldown: §a15s", " ", "§8This item can be reforged!"),
     SPIRIT_SCEPTRE("§6Spirit Sceptre", "SPIRIT_SCEPTRE", Rarity.LEGENDARY, Material.ALLIUM, 180, 300, 0, "Guided Bat", 250, 0, "§6Item Ability: Guided Bat §e§lRIGHT CLICK", "§7Shoots a guided spirit bat,", "§7following your aim end exploding", "§c2.000 §7damage", "§8Mana cost: §3250", " "),
     BONEMERANG("§6Bonemerang", "BONEMERANG", Rarity.LEGENDARY, Material.BONE, 270, 0, 130, "Swing", 0, 0, "§6Item Ability: Swing §e§lRIGHT CLICK", "§7Throw the bone a short distance,", "§7dealing the damage an arrow", "§7would.", " ", "§7Deals §cdouble damage §7when", "§7coming back. Pierces up to §e10", "§7foes.", " ", "§8This item can be reforged!" ),
     MIDAS_STAFF("§6Midas Staff", "MIDAS_STAFF", Rarity.LEGENDARY, Material.GOLDEN_SHOVEL, 130, 50, 150, "Molten Wave", 500, 1, "§6Item Ability: Molten Wave §e§lRIGHT CLICK", "§7Cast a wave of molten gold in", "§7the direction you are facing!", "§7Deals up to §c16.000 §7damage.", "§8Mana Cost: §3500", "§7Cooldown: §a1s"," ", "§6Item Ability: Greed", "§7The §3ability damage bonus §7of", "§7the item is dependent on the", "§7price paid for it at the §5Dark", "§5Auction§7!", "§7The maximum bonus of this item", "§7is §316000 §7if the bid was", "§6100.000.000 Coins §7or higher!", " "),
+    ASPECT_OF_THE_DRAGONS("§6Aspect of the Dragons", "ASPECT_OF_THE_DRAGONS", Rarity.LEGENDARY, Material.DIAMOND_SWORD, 225, 0, 100, "Dragon Rage", 100, 0, "§6Item Ability: Dragon Rage §e§lRIGHT CLICK", "§7All monsters in front of you", "§7take §a12.000 §7damage. Hit", "§7Monsters take large knockback.", "§8Mana Cost: §b100", " ", "§8This item can be reforged!"),
     //Epic
     EMBER_ROD("§5Ember Rod", "EMBER_ROD", Rarity.EPIC, Material.BLAZE_ROD, 80, 50, 35, "Fire blast", 150, 15, "§6Item Ability: Fire Blase  §e§lRIGHT CLICK","§7Shoot 3 Fireballs which deal", "§c30 §7damage in rapid", "§7succession in front of you!", "§7Mana cost: §3150", "§7cooldown: §a15s"),
     SINSEEKER_SCYTHE("§4Sin§5seeker Scythe", "SINSEEKER_SCYTHE", Rarity.EPIC, Material.GOLDEN_HOE, 100, 0, 100, "Sinrecall Transmission", 260, 0, "§6Item Ability: Sinrecall Transmission §e§lRIGHT CLICK", "§7Zap a line §54 §7blocks forward.", " ", "§7Recast within 1s (§b1.5x Mana§7)", "§7or warp back to starting point.", " ", "§7Mobs crossing zhe line(s)", "§7receive a §cmelee hit §7from what", "§7you are holding.", "§8Mana Cost: §3260", " ", "§8This item can be reforged!"),
+    STAFF_OF_THE_RISING_SUN("§5Staff of the Rising Sun", "STAFF_OF_THE_RISING_SUN", Rarity.EPIC, Material.SUNFLOWER, 0, 0, 0, "Ray of Hope", 0, 0, "§6Ability: Ray of Hope §e§lRIGHT CLICK", "§7Channels your energy towards", "§7the targets location, exploding on", "§7impact for §c750 §7damage.", "§7Costs §b10% §7 of your total mana", "§7to use. This is the only item", "§7that can deal damage to Dante."),
     //Rare
     BONZO_STAFF("§9Bonzo's Staff", "BONZO_STAFF", Rarity.RARE, Material.BLAZE_ROD, 160, 250, 0, "Showtime", 100, 0, "§6Item Ability: Showtime §e§lRIGHT CLICK", "§7Shoots balloons that create a", "§7large explosion on impact", "§7dealing up to §c1.000 §7damage.", "§8Mana cost: §3100", " ", "§8This item can be reforged!"),
     ASPECT_OF_THE_END("§9Aspect of the End", "ASPECT_OF_THE_END", Rarity.RARE, Material.DIAMOND_SWORD, 100, 0, 100, "Instant transmission", 50, 0, "§6Item Ability: Instant Transmission  §e§lRIGHT CLICK", "§7Teleport §a8 blocks §7 ahead of", "§7you and gain +50 §fSpeed", "§7for §a3 seconds§7.", "§7Mana cost: §30", " ", "§7This item can be reforged!"),
@@ -37,7 +39,7 @@ public enum SkyblockItems {
     private String[] lore;
     private int strength;
 
-    SkyblockItems(String name, String tag, Rarity rarity,Material material, int damage, int intelligence, int strength, String ItemAbility, int manacost, int cooldown, String... lore) {
+    Weapons(String name, String tag, Rarity rarity, Material material, int damage, int intelligence, int strength, String ItemAbility, int manacost, int cooldown, String... lore) {
         this.name = name;
         this.tag = tag;
         this.rarity = rarity;
