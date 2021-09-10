@@ -113,7 +113,8 @@ public class getItems implements CommandExecutor {
             epicinv.setItem(1, new ItemStack(ItemBuilder.createItem(Weapons.EMBER_ROD)));
             epicinv.setItem(2, new ItemStack(ItemBuilder.createItem(Weapons.SINSEEKER_SCYTHE)));
             epicinv.setItem(3, new ItemStack(ItemBuilder.createPowerOrb(Power_Orb.OVERFLUX_POWER_ORB)));
-            epicinv.setItem(4, new ItemStack(ItemBuilder.createItem(Weapons.STAFF_OF_THE_RISING_SUN)));
+            epicinv.setItem(4, new ItemStack(ItemBuilder.createItem(Weapons.ICE_SPRAY_WAND)));
+            epicinv.setItem(5, new ItemStack(ItemBuilder.createItem(Weapons.STAFF_OF_THE_RISING_SUN)));
             epicinv.setItem(8, purplefill);
             epicinv.setItem(9, purplefill);
             epicinv.setItem(17, purplefill);

@@ -55,7 +55,7 @@ public class ParticleUtils {
         }
     }
 
-    private static Vector rotateAroundAxisZ(Vector v, double angle) {
+    public static Vector rotateAroundAxisZ2(Vector v, double angle) {
         double x, y, cos, sin;
         cos = Math.cos(angle);
         sin = Math.sin(angle);
@@ -64,12 +64,33 @@ public class ParticleUtils {
         return v.setX(x).setY(y);
     }
 
+    public static Vector rotateAroundAxisX2(Vector v, double angle) {
+        double y, z, cos, sin;
+        cos = Math.cos(angle);
+        sin = Math.sin(angle);
+        y = v.getY() * cos - v.getZ() * sin;
+        z = v.getY() * sin + v.getZ() * cos;
+        return v.setY(y).setZ(z);
+    }
+
+    public static Vector rotateAroundAxisY2(Vector v, double angle) {
+        angle = -angle;
+        double x, z, cos, sin;
+        cos = Math.cos(angle);
+        sin = Math.sin(angle);
+        x = v.getX() * cos + v.getZ() * sin;
+        z = v.getX() * -sin + v.getZ() * cos;
+        return v.setX(x).setZ(z);
+    }
+
     public static Vector getDirection(Double yaw, Double pitch, Double roll) {
         Vector v = new Vector(0, -1, 0);
-        v = rotateAroundAxisX(v, pitch);
-        v = rotateAroundAxisY(v, yaw);
-        v = rotateAroundAxisZ(v, roll);
+        v = rotateAroundAxisX2(v, pitch);
+        v = rotateAroundAxisY2(v, yaw);
+        v = rotateAroundAxisZ2(v, roll);
         return v;
     }
+
+
 
 }

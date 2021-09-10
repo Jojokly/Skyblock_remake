@@ -130,6 +130,10 @@ public class ClickItems implements Listener {
                         e.setCancelled(true);
                         p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(Weapons.STAFF_OF_THE_RISING_SUN)));
                         break;
+                    case "§5Ice Spray Wand":
+                        e.setCancelled(true);
+                        p.getInventory().addItem(new ItemStack(ItemBuilder.createItem(Weapons.ICE_SPRAY_WAND)));
+                        break;
                     case "§6Go to: §6§lLEGENDARY":
                         Bukkit.dispatchCommand(p,"items legendary");
                         break;

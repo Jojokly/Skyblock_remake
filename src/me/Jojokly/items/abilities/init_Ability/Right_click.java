@@ -61,6 +61,9 @@ public class Right_click implements Listener {
                             Ray_of_Hope.Ray_of_Hope(p);
                         } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§6Aspect of the Dragons")) {
                             Dragon_Rage.Dragon_Rage(p);
+                        } else if (p.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase("§5Ice Spray Wand")) {
+                            IceSpray iceSpray = new IceSpray();
+                            iceSpray.play(p);
                         }
                     } else {
                         p.sendMessage("§cYou don't have enough Mana!");

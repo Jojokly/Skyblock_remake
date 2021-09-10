@@ -13,7 +13,7 @@ public enum CustomMobs {
     //Skyblock hub
     HIGH_LEVEL_SKELETON(EntityType.SKELETON, "Skeleton", "HIGH_LEVEL_SKELETON", 2, 100, 100, 0, 50, null, null, null, null, new ItemStack(Material.BONE), new ItemStack(Material.BONE, 5), 100),
     RUINS_WOLF(EntityType.WOLF, "Wolf", "RUINS_WOLF", 15, 250, 250, 0, 90,  null, null, null, null, null, new ItemStack(Material.BONE), 100),
-    RUINS_OLD_WOLF(EntityType.WOLF, "Old Wolf", "OLD_WOLF", 55, 15000, 15000, 0, 800,null, null, null, null, null, new ItemStack(Material.BONE, 4), 100),
+    RUINS_OLD_WOLF(EntityType.WOLF, "Old Wolf", "RUINS_OLD_WOLF", 55, 15000, 15000, 0, 800,null, null, null, null, null, new ItemStack(Material.BONE, 4), 100),
     //Deep caverns
     LAPIS_ZOMBIE(EntityType.ZOMBIE, "Lapis Zombie", "LAPIS_ZOMBIE", 7, 200, 200, 0, 50, new ItemStack(Material.BLUE_STAINED_GLASS), ItemBuilder.colorArmor(Material.LEATHER_CHESTPLATE, Color.BLUE), ItemBuilder.colorArmor(Material.LEATHER_LEGGINGS, Color.BLUE), ItemBuilder.colorArmor(Material.LEATHER_BOOTS, Color.BLUE), null, ArmorBuilder.build(Armor.LAPIS_ARMOR_HELMET), 1, ArmorBuilder.build(Armor.LAPIS_ARMOR_CHESTPLATE), 1, ArmorBuilder.build(Armor.LAPIS_ARMOR_LEGGINGS), 1, ArmorBuilder.build(Armor.LAPIS_ARMOR_BOOTS), 1),
     //End

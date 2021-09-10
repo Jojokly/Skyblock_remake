@@ -47,7 +47,7 @@ public class Deploy {
                 Location asl = as.getLocation();
                 EulerAngle ea = as.getRightArmPose();
                 Vector armDir = ParticleUtils.getDirection(ea.getY(), ea.getX(), -ea.getZ());
-                armDir = ParticleUtils.rotateAroundAxisY(armDir, Math.toRadians(asl.getYaw() + 90f));
+                armDir = ParticleUtils.rotateAroundAxisY2(armDir, Math.toRadians(asl.getYaw() - 90f));
                 asl.setX(asl.getX() + 30 / 16f * armDir.getX());
                 asl.setY(asl.getY() + 10f / 16f * armDir.getY());
                 asl.setZ(asl.getZ() + 30f / 16f * armDir.getZ());
@@ -91,17 +91,14 @@ public class Deploy {
                         } else if (orb == Power_Orb.PLASMAFLUX_POWER_ORB) {
                             regenhealth = HealthMain.getCustomHealth(p) / 33;
                         }
-
                         if (HealthMain.getCustomHealth(p) + regenhealth > MaxHealth.getMaxHealth(p)) {
                             MaxHealth.setMaxhealth(p, MaxHealth.getMaxHealth(p));
                         } else {
                             HealthMain.setCustomHealth(p, HealthMain.getCustomHealth(p) + regenhealth);
                         }
-
                     }
                 }
             }
         }.runTaskTimer(Main.getMain(), 0, 20);
-
     }
 }

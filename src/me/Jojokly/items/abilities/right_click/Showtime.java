@@ -59,6 +59,7 @@ public class Showtime {
         loc.add(v);
         v.normalize();
         ArmorStand as = p.getWorld().spawn(loc, ArmorStand.class);
+        as.setSmall(true);
         as.setRotation(0, 0);
         as.setCustomName("Bonzo_Balloon");
         as.setCustomNameVisible(false);

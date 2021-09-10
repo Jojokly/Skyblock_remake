@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -24,6 +25,7 @@ public class ItemBuilder {
         int damage = sbitem.getDamage();
         int intel = sbitem.getIntelligence();
         int strength = sbitem.getStrength();
+        boolean isEnchanted = sbitem.isEnchanted();
         ItemStack item = new ItemStack(sbitem.getMaterial());
         net.minecraft.server.v1_16_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         NBTTagCompound combound = (nmsItem.hasTag()) ? nmsItem.getTag() : new NBTTagCompound();
@@ -50,7 +52,11 @@ public class ItemBuilder {
         lore.add(rarity.getColor() + "" + ChatColor.BOLD +rarity.getName().toUpperCase());
         itemmeta.setLore(lore);
         itemmeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        itemmeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         itemmeta.setUnbreakable(true);
+        if (isEnchanted) {
+            itemmeta.addEnchant(Enchantment.DURABILITY, 1, true);
+        }
         finalItem.setItemMeta(itemmeta);
         return finalItem;
     }
